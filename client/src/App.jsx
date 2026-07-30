@@ -4,15 +4,17 @@ import Login from './pages/Login';
 import EmployeeDashboard from './pages/EmployeeDashboard';
 import ManagerDashboard from './pages/ManagerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminAttendance from './pages/AdminAttendance';
 import EmployeeDirectory from './pages/EmployeeDirectory';
 import Profile from './pages/Profile';
+import Attendance from './pages/Attendance';
 import Layout from './components/Layout';
 import { isAuthenticated, getUser, getRoleRedirect } from './utils/auth';
 
 const Placeholder = ({ title }) => (
   <Layout title={title}>
     <div className="rounded-xl bg-white p-6 shadow-sm">
-      <p className="text-slate-500">{title} module — coming in Week 2.</p>
+      <p className="text-slate-500">{title} module is currently under construction.</p>
     </div>
   </Layout>
 );
@@ -43,7 +45,7 @@ function App() {
           path="/attendance"
           element={
             <ProtectedRoute allowedRoles={['employee']}>
-              <Placeholder title="Attendance" />
+              <Attendance />
             </ProtectedRoute>
           }
         />
@@ -88,6 +90,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={['hr_admin']}>
               <EmployeeDirectory />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/attendance"
+          element={
+            <ProtectedRoute allowedRoles={['hr_admin']}>
+              <AdminAttendance />
             </ProtectedRoute>
           }
         />

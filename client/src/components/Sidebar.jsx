@@ -16,6 +16,7 @@ const navLinks = {
   hr_admin: [
     { to: '/admin', label: 'Dashboard' },
     { to: '/admin/employees', label: 'Employees' },
+    { to: '/admin/attendance', label: 'Attendance' },
     { to: '/admin/reports', label: 'Reports' },
     { to: '/profile', label: 'Profile' },
   ],

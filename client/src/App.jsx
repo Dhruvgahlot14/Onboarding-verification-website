@@ -8,7 +8,11 @@ import AdminAttendance from './pages/AdminAttendance';
 import EmployeeDirectory from './pages/EmployeeDirectory';
 import Profile from './pages/Profile';
 import Attendance from './pages/Attendance';
+import Leave from './pages/Leave';
+import LeaveApprovals from './pages/LeaveApprovals';
+import AdminReports from './pages/AdminReports';
 import Layout from './components/Layout';
+import { Toaster } from 'react-hot-toast';
 import { isAuthenticated, getUser, getRoleRedirect } from './utils/auth';
 
 const Placeholder = ({ title }) => (
@@ -28,6 +32,7 @@ const RootRedirect = () => {
 function App() {
   return (
     <BrowserRouter>
+      <Toaster position="top-right" />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<RootRedirect />} />
@@ -53,7 +58,7 @@ function App() {
           path="/leave"
           element={
             <ProtectedRoute allowedRoles={['employee']}>
-              <Placeholder title="Leave" />
+              <Leave />
             </ProtectedRoute>
           }
         />
@@ -71,7 +76,7 @@ function App() {
           path="/leave-approvals"
           element={
             <ProtectedRoute allowedRoles={['manager']}>
-              <Placeholder title="Leave Approvals" />
+              <LeaveApprovals />
             </ProtectedRoute>
           }
         />
@@ -105,7 +110,7 @@ function App() {
           path="/admin/reports"
           element={
             <ProtectedRoute allowedRoles={['hr_admin']}>
-              <Placeholder title="Reports" />
+              <AdminReports />
             </ProtectedRoute>
           }
         />

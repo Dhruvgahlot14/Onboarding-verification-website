@@ -59,24 +59,24 @@ const Profile = () => {
 
   return (
     <Layout title="My Profile">
-      <div className="mx-auto max-w-2xl rounded-xl bg-white p-8 shadow-sm">
+      <div className="mx-auto max-w-2xl rounded-xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-transparent dark:border-slate-700 transition-colors">
         <div className="mb-6 flex items-center gap-4">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100 text-2xl font-bold text-indigo-600">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-2xl font-bold text-indigo-600 dark:text-indigo-400">
             {employee?.name?.charAt(0)?.toUpperCase()}
           </div>
           <div>
-            <h3 className="text-xl font-semibold text-slate-800">{employee?.name}</h3>
-            <p className="text-sm text-slate-500 capitalize">
+            <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-100">{employee?.name}</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 capitalize">
               {employee?.role?.replace('_', ' ')} · {currentUser?.department}
             </p>
           </div>
         </div>
 
-        <dl className="divide-y divide-slate-100">
+        <dl className="divide-y divide-slate-100 dark:divide-slate-700/50">
           {fields.map(({ label, value }) => (
-            <div key={label} className="flex py-4">
-              <dt className="w-36 shrink-0 text-sm font-medium text-slate-500">{label}</dt>
-              <dd className="text-sm capitalize text-slate-800">{value}</dd>
+            <div key={label} className="flex py-4 transition-colors">
+              <dt className="w-36 shrink-0 text-sm font-medium text-slate-500 dark:text-slate-400">{label}</dt>
+              <dd className="text-sm capitalize text-slate-800 dark:text-slate-200">{value}</dd>
             </div>
           ))}
         </dl>

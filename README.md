@@ -1,6 +1,6 @@
 # Employee Onboarding & Document Verification Portal
 
-Week 1 deliverable: project setup, JWT authentication, role-based protected routes, and HR employee management.
+A full-stack Human Resources Management System (HRMS) built on the MERN stack, encompassing role-based authentication, employee management, attendance tracking, leave workflows, and HR reporting.
 
 ## Tech Stack
 
@@ -17,6 +17,8 @@ NextGen/
 ├── client/          # React frontend (Vite)
 ├── server/          # Express API
 ├── postman/         # Postman collection
+├── ERD_Diagram.md   # Entity Relationship Diagram
+├── Project_Report.md# Final Project Report
 └── README.md
 ```
 
@@ -24,7 +26,6 @@ NextGen/
 
 - Node.js 18+
 - MongoDB Atlas account (free tier)
-- Postman (optional, for API testing)
 
 ## Setup
 
@@ -43,7 +44,7 @@ cp .env.example .env
 
 npm install
 npm run seed    # Creates 3 test users
-npm run dev     # Starts on http://localhost:5000
+npm run dev     # Starts on http://localhost:5001
 ```
 
 ### 3. Frontend
@@ -79,10 +80,22 @@ npm run dev     # Starts on http://localhost:5173
 | GET    | /api/employees/:id    | Get single employee      |
 | PUT    | /api/employees/:id    | Update employee          |
 
-### Profile
-| Method | Endpoint          | Access        |
-|--------|-------------------|---------------|
-| GET    | /api/profile/me   | Authenticated |
+### Attendance
+| Method | Endpoint                  | Access        | Description              |
+|--------|---------------------------|---------------|--------------------------|
+| POST   | /api/attendance/checkin   | Authenticated | Check in for today       |
+| POST   | /api/attendance/checkout  | Authenticated | Check out, calculate hrs |
+| GET    | /api/attendance/mine      | Authenticated | Get own history          |
+| GET    | /api/attendance/all       | HR Admin      | Get company attendance   |
+
+### Leave Management
+| Method | Endpoint                  | Access        | Description              |
+|--------|---------------------------|---------------|--------------------------|
+| GET    | /api/leaves/mine          | Authenticated | Get own leave balance/req|
+| POST   | /api/leaves/apply         | Authenticated | Apply for leave          |
+| GET    | /api/leaves/pending       | Mgr/Admin     | Get pending leaves       |
+| PUT    | /api/leaves/:id/status    | Mgr/Admin     | Approve/Reject leave     |
+| GET    | /api/leaves/all           | HR Admin      | Get all company leaves   |
 
 ## Role-Based Routing
 
@@ -92,25 +105,17 @@ npm run dev     # Starts on http://localhost:5173
 | Manager    | /manager          | Team, Leave Approvals, Profile         |
 | HR Admin   | /admin            | Employees, Reports, Dashboard, Profile |
 
-## Postman
+## Final Project Acceptance Criteria (Weeks 1-4)
 
-Import `postman/Onboarding-Portal.postman_collection.json`. Run **Login (HR Admin)** first — it auto-saves the JWT to the `token` collection variable.
-
-## Week 1 Acceptance Criteria
-
-- [x] `client/` and `server/` folder structure
-- [x] 4 Mongoose models: User, Attendance, LeaveRequest, LeaveBalance
-- [x] Auth: register + login with bcrypt + JWT
-- [x] Seed data: HR Admin, Manager, Employee
-- [x] Login UI with loading/error states
-- [x] JWT stored in localStorage, role-based redirect
-- [x] ProtectedRoute component
-- [x] Role-aware Sidebar shell
-- [x] Employee CRUD API (HR Admin)
-- [x] Employee Directory with search + Add/Edit modals
-- [x] Employee Profile page
-- [x] Postman collection
-
-## Out of Scope (Week 1)
-
-Attendance check-in/out, leave workflow, dashboards/KPIs, reports, deployment.
+- [x] **Week 1:** Mongoose models (User, Attendance, LeaveRequest, LeaveBalance)
+- [x] **Week 1:** Authentication (JWT + bcrypt) and Role-based Protected Routes
+- [x] **Week 1:** Employee Directory CRUD operations with Search
+- [x] **Week 2:** Attendance API (One-per-day enforcement, Check-out hours calculation)
+- [x] **Week 2:** Attendance Check-in UI and History Tables
+- [x] **Week 2:** Role-specific Dashboards with live KPIs
+- [x] **Week 3:** Auto-create Leave Balances upon Employee Creation
+- [x] **Week 3:** Leave Application API (Balance deduction validation)
+- [x] **Week 3:** Manager Leave Approval Panel
+- [x] **Week 4:** UI Polish (Tailwind responsiveness, loading spinners, toast notifications)
+- [x] **Week 4:** HR Reports Module (Leave summary table, CSV Export for Attendance)
+- [x] **Week 4:** Project Documentation (README, ERD Diagram, Project Report)

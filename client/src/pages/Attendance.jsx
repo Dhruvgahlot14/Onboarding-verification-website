@@ -98,10 +98,10 @@ const Attendance = () => {
       )}
 
       {/* Status Card */}
-      <div className="mb-8 rounded-xl bg-white p-6 shadow-sm flex flex-col md:flex-row items-center justify-between">
+      <div className="mb-8 rounded-xl bg-white dark:bg-slate-800 p-6 shadow-sm flex flex-col md:flex-row items-center justify-between border border-transparent dark:border-slate-700 transition-colors">
         <div>
-          <h3 className="text-lg font-semibold text-slate-800">Today's Status</h3>
-          <p className="mt-1 text-slate-500 font-medium">{statusText}</p>
+          <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100">Today's Status</h3>
+          <p className="mt-1 text-slate-500 dark:text-slate-400 font-medium">{statusText}</p>
         </div>
         <div className="mt-4 md:mt-0 flex gap-3">
           <button
@@ -122,57 +122,57 @@ const Attendance = () => {
       </div>
 
       {/* History Table */}
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
-        <div className="border-b border-slate-200 px-6 py-4">
-          <h3 className="font-semibold text-slate-800">Attendance History</h3>
+      <div className="overflow-hidden rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-transparent dark:border-slate-700 transition-colors">
+        <div className="border-b border-slate-200 dark:border-slate-700 px-6 py-4">
+          <h3 className="font-semibold text-slate-800 dark:text-slate-100">Attendance History</h3>
         </div>
         {loading ? (
           <div className="flex justify-center py-16">
             <LoadingSpinner />
           </div>
         ) : history.length === 0 ? (
-          <p className="py-16 text-center text-slate-500">No attendance records found.</p>
+          <p className="py-16 text-center text-slate-500 dark:text-slate-400">No attendance records found.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-slate-200 bg-slate-50">
+              <thead className="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
                 <tr>
-                  <th className="px-6 py-3 font-medium text-slate-600">Date</th>
-                  <th className="px-6 py-3 font-medium text-slate-600">Check In</th>
-                  <th className="px-6 py-3 font-medium text-slate-600">Check Out</th>
-                  <th className="px-6 py-3 font-medium text-slate-600">Hours</th>
-                  <th className="px-6 py-3 font-medium text-slate-600">Status</th>
+                  <th className="px-6 py-3 font-medium text-slate-600 dark:text-slate-400">Date</th>
+                  <th className="px-6 py-3 font-medium text-slate-600 dark:text-slate-400">Check In</th>
+                  <th className="px-6 py-3 font-medium text-slate-600 dark:text-slate-400">Check Out</th>
+                  <th className="px-6 py-3 font-medium text-slate-600 dark:text-slate-400">Hours</th>
+                  <th className="px-6 py-3 font-medium text-slate-600 dark:text-slate-400">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-700/50">
                 {currentRecords.map((record) => (
-                  <tr key={record._id} className="hover:bg-slate-50">
-                    <td className="px-6 py-4 font-medium text-slate-800">
+                  <tr key={record._id} className="hover:bg-slate-50/50 dark:hover:bg-slate-700/30 transition-colors">
+                    <td className="px-6 py-4 font-medium text-slate-800 dark:text-slate-200">
                       {new Date(record.date).toLocaleDateString()}
                     </td>
-                    <td className="px-6 py-4 text-slate-600">
+                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">
                       {record.checkIn
                         ? new Date(record.checkIn).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                         : '—'}
                     </td>
-                    <td className="px-6 py-4 text-slate-600">
+                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">
                       {record.checkOut
                         ? new Date(record.checkOut).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                         : '—'}
                     </td>
-                    <td className="px-6 py-4 text-slate-600">
+                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">
                       {record.hoursWorked ? `${record.hoursWorked}h` : '—'}
                     </td>
                     <td className="px-6 py-4">
                       <span
                         className={`rounded-full px-2.5 py-0.5 text-xs font-medium capitalize ${
                           record.status === 'present'
-                            ? 'bg-green-100 text-green-700'
+                            ? 'bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400'
                             : record.status === 'half_day'
-                            ? 'bg-yellow-100 text-yellow-700'
+                            ? 'bg-yellow-100 dark:bg-yellow-900/40 text-yellow-700 dark:text-yellow-500'
                             : record.status === 'absent'
-                            ? 'bg-red-100 text-red-700'
-                            : 'bg-indigo-100 text-indigo-700'
+                            ? 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-400'
+                            : 'bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-400'
                         }`}
                       >
                         {record.status.replace('_', ' ')}
@@ -187,8 +187,8 @@ const Attendance = () => {
         
         {/* Pagination Controls */}
         {!loading && history.length > recordsPerPage && (
-          <div className="flex items-center justify-between border-t border-slate-200 bg-white px-6 py-3">
-            <div className="text-sm text-slate-500">
+          <div className="flex items-center justify-between border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-6 py-3 transition-colors">
+            <div className="text-sm text-slate-500 dark:text-slate-400">
               Showing <span className="font-medium">{indexOfFirstRecord + 1}</span> to{' '}
               <span className="font-medium">
                 {Math.min(indexOfLastRecord, history.length)}
@@ -199,14 +199,14 @@ const Attendance = () => {
               <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
-                className="rounded border border-slate-300 px-3 py-1 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-50"
+                className="rounded border border-slate-300 dark:border-slate-600 px-3 py-1 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 transition-colors"
               >
                 Previous
               </button>
               <button
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages}
-                className="rounded border border-slate-300 px-3 py-1 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-50"
+                className="rounded border border-slate-300 dark:border-slate-600 px-3 py-1 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 transition-colors"
               >
                 Next
               </button>

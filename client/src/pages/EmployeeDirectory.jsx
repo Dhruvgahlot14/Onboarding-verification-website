@@ -55,7 +55,7 @@ const EmployeeDirectory = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by name, email, department..."
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 sm:w-80"
+            className="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 px-3 py-2 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-900 sm:w-80 transition-colors"
           />
           <button
             type="submit"
@@ -76,42 +76,42 @@ const EmployeeDirectory = () => {
         <div className="mb-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div>
       )}
 
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-transparent dark:border-slate-700 transition-colors">
         {loading ? (
           <div className="flex justify-center py-16">
             <LoadingSpinner />
           </div>
         ) : employees.length === 0 ? (
-          <p className="py-16 text-center text-slate-500">No employees found.</p>
+          <p className="py-16 text-center text-slate-500 dark:text-slate-400">No employees found.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="border-b border-slate-200 bg-slate-50">
+              <thead className="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 transition-colors">
                 <tr>
-                  <th className="px-6 py-3 font-medium text-slate-600">Name</th>
-                  <th className="px-6 py-3 font-medium text-slate-600">Email</th>
-                  <th className="px-6 py-3 font-medium text-slate-600">Department</th>
-                  <th className="px-6 py-3 font-medium text-slate-600">Designation</th>
-                  <th className="px-6 py-3 font-medium text-slate-600">Role</th>
-                  <th className="px-6 py-3 font-medium text-slate-600">Actions</th>
+                  <th className="px-6 py-3 font-medium text-slate-600 dark:text-slate-400">Name</th>
+                  <th className="px-6 py-3 font-medium text-slate-600 dark:text-slate-400">Email</th>
+                  <th className="px-6 py-3 font-medium text-slate-600 dark:text-slate-400">Department</th>
+                  <th className="px-6 py-3 font-medium text-slate-600 dark:text-slate-400">Designation</th>
+                  <th className="px-6 py-3 font-medium text-slate-600 dark:text-slate-400">Role</th>
+                  <th className="px-6 py-3 font-medium text-slate-600 dark:text-slate-400">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-700/50">
                 {employees.map((emp) => (
-                  <tr key={emp.id} className="hover:bg-slate-50">
-                    <td className="px-6 py-4 font-medium text-slate-800">{emp.name}</td>
-                    <td className="px-6 py-4 text-slate-600">{emp.email}</td>
-                    <td className="px-6 py-4 text-slate-600">{emp.department || '—'}</td>
-                    <td className="px-6 py-4 text-slate-600">{emp.designation || '—'}</td>
+                  <tr key={emp.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-700/30 transition-colors">
+                    <td className="px-6 py-4 font-medium text-slate-800 dark:text-slate-200">{emp.name}</td>
+                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">{emp.email}</td>
+                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">{emp.department || '—'}</td>
+                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">{emp.designation || '—'}</td>
                     <td className="px-6 py-4">
-                      <span className="rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium capitalize text-indigo-700">
+                      <span className="rounded-full bg-indigo-50 dark:bg-indigo-900/40 px-2 py-0.5 text-xs font-medium capitalize text-indigo-700 dark:text-indigo-400">
                         {emp.role.replace('_', ' ')}
                       </span>
                     </td>
                     <td className="px-6 py-4">
                       <button
                         onClick={() => setEditingEmployee(emp)}
-                        className="text-sm font-medium text-indigo-600 hover:text-indigo-800"
+                        className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300"
                       >
                         Edit
                       </button>

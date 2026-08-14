@@ -111,18 +111,22 @@ router.get('/mine', async (req, res, next) => {
 // GET /api/attendance/all — HR Admin only
 router.get('/all', authorize('hr_admin'), async (req, res, next) => {
   try {
-    const { date } = req.query;
-    let queryDate = getStartOfDay();
+    const { date, allTime } = req.query;
+    let filter = {};
     
-    if (date) {
-      queryDate = getStartOfDay(new Date(date));
+    if (allTime !== 'true') {
+      let queryDate = getStartOfDay();
+      if (date) {
+        queryDate = getStartOfDay(new Date(date));
+      }
+      filter.date = queryDate;
     }
 
-    const attendanceRecords = await Attendance.find({ date: queryDate })
+    const attendanceRecords = await Attendance.find(filter)
       .populate('userId', 'name email department role designation')
-      .sort({ createdAt: -1 });
+      .sort({ date: -1, createdAt: -1 });
 
-    res.json({ attendance: attendanceRecords, date: queryDate });
+    res.json({ attendance: attendanceRecords, date: filter.date });
   } catch (error) {
     next(error);
   }

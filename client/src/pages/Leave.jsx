@@ -9,7 +9,7 @@ const Leave = () => {
   const [balance, setBalance] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  
+
   // Form state
   const [showForm, setShowForm] = useState(false);
   const [submitting, setSubmitting] = useState(false);

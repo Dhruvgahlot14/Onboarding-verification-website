@@ -10,6 +10,20 @@ A full-stack Human Resources Management System (HRMS) built on the MERN stack, e
 | Backend  | Node.js, Express, Mongoose, JWT, bcrypt            |
 | Database | MongoDB Atlas                                      |
 
+## Screenshots
+
+| Login / Auth | Employee Dashboard |
+|---|---|
+| ![Login](client/public/login.png) | ![Employee Dashboard](client/public/employee-dashboard.png) |
+
+| Attendance Check-in | Leave Management |
+|---|---|
+| ![Attendance](client/public/attendance.png) | ![Leave Management](client/public/leave.png) |
+
+| Admin Directory | Dark Mode |
+|---|---|
+| ![Admin Directory](client/public/directory.png) | ![Dark Mode](client/public/darkmode.png) |
+
 ## Project Structure
 
 ```

@@ -48,6 +48,7 @@ const Layout = ({ children, title, subtitle }) => {
                 className="w-full bg-white dark:bg-slate-800 rounded-full py-2.5 pl-10 pr-4 text-sm outline-none border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 focus:border-blue-400 dark:focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 shadow-sm"
               />
             </div>
+            </div>
           </div>
 
           {/* Right: Actions & Profile */}

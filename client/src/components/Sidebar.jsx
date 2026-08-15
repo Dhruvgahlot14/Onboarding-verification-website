@@ -8,7 +8,7 @@ import {
   Users, 
   FileBarChart,
   LogOut,
-  Hexagon
+  X
 } from 'lucide-react';
 
 const navLinks = {
@@ -32,7 +32,7 @@ const navLinks = {
   ],
 };
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, setIsOpen }) => {
   const user = getUser();
   const navigate = useNavigate();
   const links = navLinks[user?.role] || navLinks.employee;
@@ -43,11 +43,32 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="flex h-screen w-64 flex-col bg-white dark:bg-slate-900 border-r border-slate-100 dark:border-slate-800 text-slate-600 dark:text-slate-400 shadow-sm z-10 relative transition-colors duration-200">
-      <div className="border-b border-slate-100 dark:border-slate-800 px-6 py-5 mb-4">
-        <h1 className="text-xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">NextGen Forge</h1>
-        <p className="text-[10px] font-bold tracking-[0.2em] text-cyan-600/70 dark:text-cyan-400/70">TECHNOLOGY</p>
-      </div>
+    <>
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 md:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      <aside 
+        className={`fixed inset-y-0 left-0 z-50 flex h-screen w-64 flex-col bg-white dark:bg-slate-900 border-r border-slate-100 dark:border-slate-800 text-slate-600 dark:text-slate-400 shadow-xl md:shadow-sm md:relative transform transition-transform duration-300 ease-in-out ${
+          isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+        }`}
+      >
+        <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 px-6 py-5 mb-4">
+          <div>
+            <h1 className="text-xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">NextGen Forge</h1>
+            <p className="text-[10px] font-bold tracking-[0.2em] text-cyan-600/70 dark:text-cyan-400/70">TECHNOLOGY</p>
+          </div>
+          <button 
+            onClick={() => setIsOpen(false)}
+            className="md:hidden p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
 
       <div className="px-6 mb-2">
         <p className="text-[10px] font-bold tracking-wider text-slate-400 dark:text-slate-500 uppercase">General</p>
@@ -85,6 +106,7 @@ const Sidebar = () => {
         </button>
       </div>
     </aside>
+    </>
   );
 };
 

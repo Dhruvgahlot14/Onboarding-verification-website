@@ -1,11 +1,12 @@
 import Sidebar from './Sidebar';
-import { Search, Bell, Moon, Sun } from 'lucide-react';
+import { Search, Bell, Moon, Sun, Menu } from 'lucide-react';
 import { getUser } from '../utils/auth';
 import toast from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 
 const Layout = ({ children, title, subtitle }) => {
   const user = getUser();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     return localStorage.getItem('theme') === 'dark';
   });
@@ -22,14 +23,23 @@ const Layout = ({ children, title, subtitle }) => {
 
   return (
     <div className="flex h-screen bg-[#F0F4F8] dark:bg-slate-900 overflow-hidden transition-colors duration-200">
-      <Sidebar />
+      <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
       <main className="flex-1 flex flex-col min-w-0">
         
         {/* Top Header Navigation */}
-        <header className="flex h-20 items-center justify-between px-8 bg-transparent shrink-0">
+        <header className="flex h-20 items-center justify-between px-4 md:px-8 bg-transparent shrink-0">
           
-          {/* Left: Search Bar */}
-          <div className="flex-1 max-w-md">
+          <div className="flex items-center gap-4 flex-1">
+            {/* Hamburger Menu (Mobile Only) */}
+            <button 
+              onClick={() => setIsSidebarOpen(true)}
+              className="md:hidden p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+
+            {/* Left: Search Bar */}
+            <div className="flex-1 max-w-md hidden sm:block">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
               <input 
